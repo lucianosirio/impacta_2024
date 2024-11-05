@@ -40,7 +40,7 @@ php artisan make:view courses/show
 
 Executar as migrationCriar Controller
 ```
-php artisan migrate
+php artisan migrate (antes de executar, configurar arquivo env.)
 
 Criar Models
 ```
