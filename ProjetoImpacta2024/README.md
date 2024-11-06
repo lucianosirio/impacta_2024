@@ -47,3 +47,9 @@ Criar Models
 php artisan make:model NomeDaModel
 
 php artisan make:model Course
+
+Criar um arquivo de Request com validações
+```
+php artisan make:request NomeDoRequest
+
+php 
