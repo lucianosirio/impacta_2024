@@ -9,8 +9,18 @@ class UserController extends Controller
 {
     public function index()
     {
+
+        //Recuperar os registros do BD
+        $users = User::orderByDesc('id')->get();
+
+
         //Carregar a View
-        return view('users.index');
+        return view('users.index', ['users' => $users]);
+    }
+
+    public function show(User $user)
+    {   
+        return view('users.show', ['user' => $user]); 
     }
 
     public function create()
@@ -24,12 +34,14 @@ class UserController extends Controller
         //Validar formulário
        $request->validated();
 
+       //Cadastrar registro no banco de dados
        User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
        ]);
 
+       //Redirecionar o usuário, enviar a mensagme de sucesso
        return redirect()->route('user.index')->with('success', 'Usuário cadastrado com sucesso!');      
 
     }
