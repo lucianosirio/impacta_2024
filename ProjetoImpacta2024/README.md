@@ -7,6 +7,10 @@ README.md
 
 * PHP 8.2 ou superior
 * Composer
+* Node
+
+Para implementar o Layout:
+* Bootstrap
 
 ## Como rodar o projeto baixado
 
@@ -52,4 +56,16 @@ Criar um arquivo de Request com validações
 ```
 php artisan make:request NomeDoRequest
 
-php 
+Instalar o framework Bootstrap
+```
+npm install
+
+npm i --save bootstrap @popperjs/core
+
+Instalar o sass
+npm i --save-dev sass
+
+Executar as bibliotecas Node.js
+```
+npm run dev
+

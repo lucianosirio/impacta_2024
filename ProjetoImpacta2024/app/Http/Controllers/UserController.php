@@ -45,4 +45,36 @@ class UserController extends Controller
        return redirect()->route('user.index')->with('success', 'Usuário cadastrado com sucesso!');      
 
     }
+
+    public function edit(User $user)
+    {
+        return view('users.edit', ['user' => $user]);
+    }
+
+    public function update(UserRequest $request, User $user)
+    {
+        //Validar o formulário
+        $request->validated();
+
+        //Editar informações do registro no banco de dados
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
+
+        //Redirecionar o usuário, enviar a mensagme de sucesso
+        return redirect()->route('user.show', ['user' => $user->id ])->with('success', 'Usuário editado com sucesso!');
+    }
+
+    public function destroy(User $user)
+    {
+        //Apagar registro no BD
+        $user->delete();
+
+        //Redirecionar o usuário, enviar a mensagme de sucesso
+        return redirect()->route('user.index', ['user' => $user->id ])->with('success', 'Usuário apagado com sucesso!');
+
+    }
+        
 }
