@@ -1,38 +1,53 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listar Usuários</title>
-</head>
-<body>
-    
-    <a href="{{ route('user.create')}}">Cadatrar</a><br>
-    
-    <h2>Listar Usuários</h2>
+@extends('layouts.admin')
 
-    @if (session('success'))
-        <p style="color: #086">
-            {{ session('success') }}
-        </p>
-    @endif
+@section('content')
+<div class="card mt-4 mb-4 border-light shadow">
 
-    @forelse ($users as $user)
-        ID: {{ $user->id }} <br>
-        Nome: {{ $user->name }}<br>
-        E-mail: {{ $user->email}}<br>
-        <a href="{{ route('user.show', ['user' => $user->id]) }}">Visualizar</a><br>
-        <a href="{{ route('user.edit', ['user' => $user->id]) }}">Editar</a><br>
-        <!-- Este método abaixo não é muito utilizado para apagar -->
-        <!-- <a href="{{ route('user.destroy', ['user' => $user->id]) }}">Apagar</a><br> -->
-        <form method="POST" action="{{route('user.destroy', [ 'user' => $user->id ]) }}">
-            @csrf
-            @method('delete')
-            <button type="submit" onclick="return confirm('Tem certeza que deseja apagar o registro?')">Apagar</button>
-        </form>       
-        <hr>
-    @empty
-    @endforelse
+    <div class="card-header hstack gap-2">
 
-</body>
-</html>
+        <span>Listar Usuários</span>
+
+        <span class="ms-auto">
+            <a href="{{ route('user.create')}}" class="btn btn-success btn-sm">Cadatrar</a><br>
+        </span>
+    </div>
+
+    <div class="card-body">
+
+        <x-alert />
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">ID</th>
+                    <th scope="col" class="text-center">Nome</th>
+                    <th scope="col" class="text-center">E-mail</th>
+                    <th scope="col" class="text-center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($users as $user)
+
+                <tr>
+                    <th>{{ $user->id }}</th>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email}}</td>
+                    <td class="text-center"><a href="{{ route('user.show', ['user' => $user->id]) }}" class="btn btn-primary btn-sm">Visualizar</a>
+                        <a href="{{ route('user.edit', ['user' => $user->id]) }}" class="btn btn-warning btn-sm">Editar</a>
+                        <!-- Este método abaixo não é recomendado -->
+                        <!-- <a href="{{ route('user.destroy', ['user' => $user->id]) }}">Apagar</a><br> -->
+                        <form method="POST" action="{{route('user.destroy', [ 'user' => $user->id ]) }}" class='d-inline'>
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja apagar o registro?')">Apagar</button>
+                        </form>
+                    </td>
+                </tr>
+
+                @empty
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+</div>
+@endsection
