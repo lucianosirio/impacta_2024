@@ -1,12 +1,17 @@
-C:\wamp64\bin\php\php8.2.18\php.exe
 
-=======================================
-README.md
+
+
+# Projeto-2RUD
+## Registration | Read | Update | Delete
+#### *Cadastrar | Visualizar | Editar | Excluir*
+
+
+
 
 ## Requisitos
 
 * PHP 8.2 ou superior
-* Composer
+* Composer - utilizado para gerenciar as dependências
 * Node
 
 Para implementar o Layout:
@@ -14,58 +19,80 @@ Para implementar o Layout:
 
 ## Como rodar o projeto baixado
 
-
-## Sequencia para criar o projeto
-Criar o porjeto com Laravel
-```
-
-composer create-project laraval/laravel .
-```
-
-Iniciar o projeto criado com Laravel
+* Incializar o BD e PHP no XAMP
+* No terminal acesse a pasta do projeto e execute o comanto abaixo:
 ```
 php artisan serve
 ```
+
+## Sequencia para criar o projeto
+
+### **Criar o projeto com Laravel**
+* Instale o Laravel
+* Instale o Composer
+
+E execute o  comando abaixo para criar o projeto:
+```
+composer create-project laraval/laravel .
+```
+
+### **Iniciar o projeto criado com Laravel**
+```
+php artisan serve
+```
+Após iniciar o php clique no localhost informado:
+
 http://127.0.0.1:8000
-```
-Criar Controller
-```
-php artisan make:controller NomeController
+
+### **Criar um diretório para as Controllers**
+
+ex: php artisan make:controller (NomeController)
 ```
 php artisan make:controller CourseController
 ```
 
-Criar View
-```
-php artisan make:view nome
+### **Criar View**
 
+ex: php artisan make:view nome
+```
 php artisan make:view courses/show 
-
-
-Executar as migrationCriar Controller
 ```
-php artisan migrate (antes de executar, configurar arquivo env.)
 
-Criar Models
+
+### **Executar as migration - *(antes de executar, configurar arquivo env.)***
 ```
-php artisan make:model NomeDaModel
+php artisan migrate 
+```
 
+### **Criar Models**
+ex: php artisan make:model NomeDaModel
+```
 php artisan make:model Course
+```
 
-Criar um arquivo de Request com validações
+### **Criar um arquivo de Request com validações**
 ```
 php artisan make:request NomeDoRequest
+```
 
-Instalar o framework Bootstrap
+## **Instalar o framework Bootstrap** 
 ```
 npm install
-
-npm i --save bootstrap @popperjs/core
+```
 
 Instalar o sass
+```
+npm i --save bootstrap @popperjs/core
 npm i --save-dev sass
-
+``` 
 Executar as bibliotecas Node.js
 ```
 npm run dev
+```
 
+## **Após finalizar projeto, para abri-lo basta:** 
+Executar dentro do caminho...
+C:\xampp\htdocs\Projeto\ProjetoImpacta2024>
+```
+ php artisan serve
+ npm run dev
